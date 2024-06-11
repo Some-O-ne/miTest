@@ -1,40 +1,66 @@
-from flask import Flask, redirect, session
-from db.scripts import do
+from flask import Flask, redirect, session, send_from_directory,render_template,request
+from db.scripts import do,DBWrapper
 from db.queries import get_by_id
 from utils.settings import settings
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = settings.key
+db = DBWrapper(settings.DBName)
 
 @app.route('/')
 def index():
-    session['statement_id'] = 1
-    session['intellect'] = [
-        [0, 'logical'],
-        [0, 'inner'],
-        [0, 'bodily'],
-        [0, 'verbal'],
-        [0, 'musical'],
-        [0, 'imaginative'],
-        [0, 'philosophical'],
-        [0, 'social']
-    ]
-    return '<h2>index</h2>'
+    session["statementID"] = 1
+    session["intellectScores"] = {
+        "logical":0,
+        "inner":0,
+        "bodily":0,
+        "verbal":0,
+        "musical":0,
+        "imaginative":0,
+        "philosophical":0,
+        "social":0,
+        "natural":0
+    }
+    return send_from_directory("./static/html/","main.html")
 
 @app.route('/test')
 def test():
-    data = do(get_by_id, [session['statement_id']])
-    intellect = data[0][2]
+    data = do(get_by_id, [session["statementID"]])
     #получить points из формы 
-    session['statement_id'] += 1
     if not data:
         return redirect('/result')
-    return data[0][1]
+    question = data[0][1]
+
+
+    return render_template("test.html",question=question)
+
+
+
+@app.route("/back")
+def back():
+    if session["statementID"] < 1: return
+    session["statementID"] -= 1
+    return redirect("/test")
+
+@app.route("/answer")
+def next():
+    answer = int(request.args.get('value'))
+    db.connect()
+    data = db.get(get_by_id, [session["statementID"]])
+    db.disconnect()
+    if not data:
+        return redirect("/result")
+    intellect = data[0][2]
+    session["intellectScores"][intellect] += answer
+    if session["intellectScores"][intellect] < 0: session["intellectScores"][intellect] = 0
+    session["statementID"] += 1
+    return redirect("/test")
+    
 
 @app.route('/result')
 def result():
-    session['statement_id'] = 1
-    return '<h2>result</h2>'
+    session['statementID'] = 1
+    return '<h2>result</h2>'+str(session["intellectScores"])
 
 if __name__ == '__main__':
     app.run(debug=True)
