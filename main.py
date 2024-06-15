@@ -32,27 +32,38 @@ def test():
     question = data[0][1]
 
 
-    return render_template("test.html",question=question)
+    return render_template("test.html",question=question,statementID=session["statementID"])
 
 
 
 @app.route("/back")
 def back():
     if session["statementID"] < 1: return
+    intellect = session["last"]["intellect"]
+
+    session["intellectScores"][intellect] -= session["last"]["answer"]
+
+    if session["intellectScores"][intellect] < 0: session["intellectScores"][intellect] = 0
     session["statementID"] -= 1
     return redirect("/test")
 
 @app.route("/answer")
 def next():
     answer = int(request.args.get('value'))
+    
     db.connect()
     data = db.get(get_by_id, [session["statementID"]])
     db.disconnect()
+
     if not data:
         return redirect("/result")
     intellect = data[0][2]
     session["intellectScores"][intellect] += answer
+
+    session["last"] = {"intellect":intellect,"answer":answer}
+
     if session["intellectScores"][intellect] < 0: session["intellectScores"][intellect] = 0
+
     session["statementID"] += 1
     return redirect("/test")
     
@@ -60,7 +71,8 @@ def next():
 @app.route('/result')
 def result():
     session['statementID'] = 1
-    return '<h2>result</h2>'+str(session["intellectScores"])
+    
+    return render_template("result.html",labels=list(session["intellectScores"].keys()),data =list(session["intellectScores"].values()))
 
 if __name__ == '__main__':
     app.run(debug=True)

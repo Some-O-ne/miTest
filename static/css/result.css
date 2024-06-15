@@ -1,0 +1,7 @@
+.chartWrapper {
+    width: 100vw;
+    height: 30rem;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}

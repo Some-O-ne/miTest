@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/result.css">
+    <link rel="shortcut icon" href="static/img/favicon.svg" type="image/svg">
+    <title>Подбор профессии по типу личности</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <h1>Результаты теста:</h1>
+    <div class="chartWrapper">
+        <canvas class="resultChart"></canvas>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementsByClassName('resultChart')[0];
+
+  new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+      labels: {{labels|safe}},
+      datasets: [{
+        data: {{data}},
+        borderWidth: 5,
+        backgroundColor: [
+            "#ad26ff"
+        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/css/test.css">
-    <title>Document</title>
+    <link rel="shortcut icon" href="static/img/favicon.svg" type="image/svg">
+    <title>Подбор профессии по типу личности</title>
 </head>
 <body>
     <h1 class="question">{{question}}</h1>
@@ -15,6 +16,9 @@
         <button value="1" class="answer">Скорее согласен</button>
         <button value="2" class="answer">Согласен</button>
     </div>
+    {% if statementID > 1 %}
+    <button class="back">←</button>
+    {% endif %}
     <script src="./static/js/test.js"></script>
 </body>
 </html>
