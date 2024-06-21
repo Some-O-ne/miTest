@@ -11,16 +11,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <h1>Результаты теста:</h1>
     <div class="chartWrapper">
-        <canvas class="resultChart"></canvas>
+        <canvas class="resultChart_intell"></canvas>
     </div>
-    
-
+    <div class="chartWrapper">
+      <canvas class="resultChart_persona"></canvas>
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-  const ctx = document.getElementsByClassName('resultChart')[0];
-
-  new Chart(ctx, {
+  const ctx_intell = document.getElementsByClassName('resultChart_intell')[0];
+  new Chart(ctx_intell, {
     type: 'polarArea',
     data: {
       labels: {{labels|safe}},
@@ -28,7 +27,39 @@
         data: {{data}},
         borderWidth: 5,
         backgroundColor: [
-            "#ad26ff"
+            "#ad26ff",
+            '#ff25d7',
+            '#ff6e25',
+            '#ffde25',
+            '#8eff25',
+            '#25ffcc',
+            '#25c8ff',
+            '#255fff',
+            '#7525ff'
+        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  const ctx_persona = document.getElementsByClassName('resultChart_persona')[0];
+  new Chart(ctx_persona, {
+    type: 'polarArea',
+    data: {
+      labels: {{labels|safe}},
+      datasets: [{
+        data: {{data}},
+        borderWidth: 5,
+        backgroundColor: [
+            "#ad26ff",
+            '#25ffcc',
+            '#ff6e25',
+            '#25c8ff'
         ]
       }]
     },
