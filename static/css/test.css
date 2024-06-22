@@ -4,11 +4,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     height: 100vh;
     margin: 0;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    /* margin-left: 15vw;
+    margin-right: 15vw;
+    max-width: 80vw; */
 }
 .question {
     color: #20004b;
@@ -23,32 +24,68 @@ body {
 }
 .answers {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-self: center;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: start    ;
+    align-self: flex-start;
+    gap: 2rem;
+    color: #20004b;
+    font-size: 20px;
+    font-family: 'Mulish', Arial, sans-serif;
+    line-height: 1.55;
+    font-weight: 700;
+    background-position: center center;
+    border-color: transparent;
+    border-style: solid;
 }
-button {
+li {
     font-size: 1rem;
     border: none;
     border-radius: 10px;
     padding: 0.75rem;
     cursor: pointer;
-    background-color: #ad26ff;
-    color: #fff;
+    list-style: none;
 }
-button:hover {
+li:hover {
     background-color: #ffde00;
     color:#5e0890;
     transition: 0.1s;
 }
-.back {
-    margin-top: 2rem;
-    align-self: center;
-    font-size: 5rem;
-    font-weight: 900;
+.backIcon {
+    min-width: 2rem;
     line-height: 0;
-    padding: 0;
-    color: #5e0890;
-
+}
+.header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    gap: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.back {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.progressBar {
+    width: 100%;
+    background-color: #ad26ff;
+    height: 1rem;
+    border-radius: 2rem;
+}
+.fill {
+    height: 100%;
+    background-color: #ffde00;
+    border-radius: 2rem;
+}
+.percent {
+    color: #20004b;
+    font-size: 20px;
+    font-family: 'Mulish', Arial, sans-serif;
+    line-height: 1.55;
+    font-weight: 700;
+    background-position: center center;
+    border-color: transparent;
+    border-style: solid;
 }

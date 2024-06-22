@@ -1,7 +1,9 @@
 from flask import Flask, redirect, session, send_from_directory,render_template,request
 from db.scripts import DBWrapper
-from db.queries import get_by_id
+from db.queries import get_by_id, get_question_amount
 from utils.settings import settings
+from professions.professions import professions
+from professions.get_profession_list import get_prof_list
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = settings.key
@@ -37,12 +39,16 @@ def index():
 @app.route('/test')
 def test():
     data = db.get(get_by_id, [session["statementID"]])
+    
+    questionAmount = len(db.get(get_question_amount))-1 # у мекя 0 идей почему, но оно выдает [(0,), (0,), (0,) ... (0,)] 45 раз
+    print(questionAmount)
+
     if not data:
         return redirect('/result')
     question = data[0][1]
 
 
-    return render_template("test.html",question=question,statementID=session["statementID"])
+    return render_template("test.html",question=question,statementID=session["statementID"],percent=int(((session["statementID"]-1)/questionAmount)*100))
 
 
 @app.route("/back")
@@ -88,7 +94,10 @@ def next():
 
 @app.route('/result')
 def result():
-    session['statementID'] = 1
+    intellect = max(session["intellectScores"], key=session["intellectScores"].get)
+    personality = max(session["personalityScores"], key=session["personalityScores"].get)
+    prof_list = get_prof_list(professions[intellect], professions[personality])
+    print(prof_list)
     return render_template("result.html",labels=list(session["intellectScores"].keys()),data =list(session["intellectScores"].values()))
 
 if __name__ == '__main__':

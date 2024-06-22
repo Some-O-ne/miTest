@@ -8,17 +8,27 @@
     <title>Подбор профессии по типу личности</title>
 </head>
 <body>
-    <h1 class="question">{{question}}</h1>
-    <div class="answers">
-        <button value="-2" class="answer">Не согласен</button>
-        <button value="-1" class="answer">Скорее не согласен</button>
-        <button value="0" class="answer">Не знаю</button>
-        <button value="1" class="answer">Скорее согласен</button>
-        <button value="2" class="answer">Согласен</button>
+    <!-- <h1 class="question"></h1> -->
+    <div class="header">
+        {% if statementID > 1 %}
+            <a class="back" href="/back">
+                <img class="backIcon" src="../static/img/back.svg" alt="">
+            </a>
+        {% endif %}
+        <div class="progressBar"><div class="fill" style="width:{{percent}}%;"></div></div>
+        <div class="percent">{{percent}}%</div>
     </div>
-    {% if statementID > 1 %}
-    <button class="back">←</button>
-    {% endif %}
+    <h1 class="question">{{question}}</h1>
+
+        <ul class="answers">
+            <li value="-2" class="answer">Не согласен</li>
+            <li value="-1" class="answer">Скорее не согласен</li>
+            <li value="0" class="answer">Не знаю</li>
+            <li value="1" class="answer">Скорее согласен</li>
+            <li value="2" class="answer">Согласен</li>
+        </ul>
+
+
     <script src="./static/js/test.js"></script>
 </body>
 </html>
