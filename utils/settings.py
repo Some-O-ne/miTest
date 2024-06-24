@@ -7,6 +7,5 @@ load_dotenv()
 @dataclass
 class Settings():
     key: str
-    DBName: str
 
-settings = Settings(key=os.getenv('KEY'),DBName="test.db")
+settings = Settings(key=os.getenv('KEY'))

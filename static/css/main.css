@@ -1,19 +1,34 @@
 h1{
+    margin-left: 350px;
     font-size: 50px;
     font-family: 'Mulish', Arial, sans-serif;
     font-weight: 900;
     background-position: center center;
     border-color: transparent;
     border-style: solid;
-    width: 900px;
+    width: 800px;
     line-height: 5rem;
     float: left;
+    margin-right: 4rem;
 }
 
 h2{
     color: white;
     font-size:25px;
     font-family: 'Mulish', Arial, sans-serif;
+}
+
+h3{
+    color: #505050;
+    font-size: 20px;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-weight: 400px;
+    background-position: center center;
+    border-color: transparent;
+    border-style: solid;
+    margin: 10px;
+    margin-left: 350px;
+
 }
 
 p{
@@ -24,34 +39,36 @@ p{
 }
 
 .test{
+    color:black;
+    background-color: #ffde00;
     margin: 0 auto;
-    display: block;
-    width: 400px;
-    height: 100px;
+    display: flex;
+    width: 300px;
+    height: 70px;
     border-radius: 50px;
+    font-size: 20px;
     font-family: 'Mulish', Arial, sans-serif;
-    background-position: center center;
-    font-size: 30px;
+    margin-top: 50px;
+    border-style: none;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
 }
 
-.test-text{
-    text-decoration:none;
+.test:hover{
+    color: white;
+    transition: 0.2s;
+    background-color: #ad26ff;
 }
 
 span{
     background-color: yellow;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius:20px;
+    border-radius: 20px;
 }
 
 .intelect{
     background-color: #20004b;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius:20px;
+    border-radius: 20px;
     display: flex;
     width: 400px;
     height: auto;
@@ -59,5 +76,26 @@ span{
 }
 
 .logo_img{
-    width: 500px;
+    width: 300px;
+    margin-left: 400px;
+}
+
+.number{
+    background-color: #ffde00;
+    border-radius: 50%;
+    padding: 15px 20px;
+    display: inline-block;
+    margin: .1vh;
+}
+
+.footer{
+    margin-top: 50px;
+    border-radius: 30px;
+    background-color: #7605ff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    align-items: center;
 }

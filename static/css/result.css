@@ -5,3 +5,15 @@
     flex-direction: column;
     display: flex;
 }
+
+h1 {
+    color: #20004b;
+    font-size: 20px;
+    font-family: 'Mulish', Arial, sans-serif;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    width: 500px;
+}
