@@ -9,6 +9,31 @@
 
     
 }
+
+@media screen and (max-width:700px) {
+    .metric{
+        flex-direction: column;
+    }
+
+    .intellects, .personalities {
+        flex-direction: column !important;
+    }
+
+    
+}
+@media screen and (max-width:1000px) {
+    .chartWrapper {
+        width: unset !important;
+    }
+    .card{
+        align-self: center !important;
+    }
+    .personality, .intellect {
+        max-width: min-content;
+        align-self: center;
+    }
+}
+
 .professions {
     align-self: flex-start;
     gap:1rem;

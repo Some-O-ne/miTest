@@ -7,6 +7,14 @@
     .mobiusLink{
         display: none;
     }
+    .card {
+        padding: 1rem !important;
+
+
+    }
+    h1 {
+            font-size: 28px;
+        }
 }
 
 .mobiusLink {
